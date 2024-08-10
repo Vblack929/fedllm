@@ -6,4 +6,4 @@ __pycache__/
 *.egg
 *.egg-info
 .DS_Store
-dataset/
+datasets/
