@@ -86,7 +86,7 @@ class Trainer(object):
             reduction = "none" if self.visualize else "mean"
             self.loss_function = nn.CrossEntropyLoss(reduction=reduction)
     
-    def register(self, model: PLMModel, dataloader, metrics):
+    def register(self, model, dataloader, metrics):
         r"""
         Register model, dataloader and optimizer
         """

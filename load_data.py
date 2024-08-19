@@ -1,9 +1,31 @@
 import os
 import pandas as pd
 import random
+from datasets import load_dataset
 
 # Define the base path for the dataset
 data_basepath = "./datasets/imdb"
+
+dataset = load_dataset("imdb")
+
+# Function to save dataset split to text files
+def save_dataset_split(split, split_name, basepath):
+    texts = split['text']
+    labels = split['label']
+    
+    with open(os.path.join(basepath, f"{split_name}.txt"), 'w') as text_file:
+        for text in texts:
+            text_file.write(f"{text}\n")
+    
+    with open(os.path.join(basepath, f"{split_name}_labels.txt"), 'w') as label_file:
+        for label in labels:
+            label_file.write(f"{label}\n")
+
+# Save train and test splits
+save_dataset_split(dataset['train'], 'train', data_basepath)
+save_dataset_split(dataset['test'], 'test', data_basepath)
+
+print("IMDB dataset downloaded and saved successfully.")
 
 # Function to load text and labels from files
 def load_split(data_dir, split):
